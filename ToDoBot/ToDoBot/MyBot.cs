@@ -29,7 +29,7 @@ namespace ToDoBot
 			});
 
 			var commands = discord.GetService<CommandService>();
-
+			
 			commands.CreateCommand("hello")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Leave me alone " + e.User.Name + " I know where you live!!");
@@ -49,6 +49,14 @@ namespace ToDoBot
 				.Do(async (e) => {
 					await AddToList(e);
 					PurgeChannel(e);
+				});
+
+			commands.CreateCommand("test").Parameter("testSTring", ParameterType.Multiple)
+				.Do(async (e) => {
+					for (int i = 0; i < e.Args.Length; i++)
+					{
+						await e.Channel.SendMessage(e.Args[i].ToString());
+					}
 				});
 
 			commands.CreateCommand("done").Parameter("toRemove", ParameterType.Required)
