@@ -19,3 +19,6 @@ C:\Users\Justin-KEEP_OFF\Documents\Visual Studio 2017\Projects\ToDoBot\ToDoBot\o
 C:\Users\Justin-KEEP_OFF\Documents\Visual Studio 2017\Projects\ToDoBot\ToDoBot\obj\Debug\ToDoBot.exe
 C:\Users\Justin-KEEP_OFF\Documents\Visual Studio 2017\Projects\ToDoBot\ToDoBot\obj\Debug\ToDoBot.pdb
 C:\Users\Justin-KEEP_OFF\Documents\Visual Studio 2017\Projects\ToDoBot\ToDoBot\bin\Debug\UnityEngine.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\ToDoBot.exe.config
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.exe
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.pdb
