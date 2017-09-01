@@ -14,6 +14,7 @@ namespace ToDoBot
 
 		List<string> toDoList = new List<string>();
 
+
 		public MyBot()
 		{
 			discord = new DiscordClient(x =>
@@ -22,28 +23,34 @@ namespace ToDoBot
 				x.LogHandler = Log;
 			});
 
+
 			discord.UsingCommands(x =>
 			{
 				x.PrefixChar = '.';
 				x.AllowMentionPrefix = true;
 			});
 
+
 			var commands = discord.GetService<CommandService>();
+
 
 			commands.CreateCommand("hello")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Leave me alone " + e.User.Name + " I know where you live!!");
 			});
 
+
 			commands.CreateCommand("How Ya Doin?")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Shut up and get back to work " + e.User.Name + "!");
 				});
 
+
 			commands.CreateCommand("list")
 				.Do(async (e) => {
 					PurgeChannel(e);
 				});
+
 
 			commands.CreateCommand("todo").Parameter("listVar", ParameterType.Required)
 				.Do(async (e) => {
@@ -51,11 +58,13 @@ namespace ToDoBot
 					PurgeChannel(e);
 				});
 
+
 			commands.CreateCommand("done").Parameter("toRemove", ParameterType.Required)
 				.Do(async (e) => {
 					await takeFromList(e);
 					PurgeChannel(e);
 				});
+
 
 			discord.ExecuteAndWait(async () =>
 			{
@@ -63,10 +72,13 @@ namespace ToDoBot
 			});
 		}
 
+
 		private void Log(object sender, LogMessageEventArgs e)
 		{
 			Console.WriteLine(e.Message);
 		}
+
+
 
 		private async Task AddToList(CommandEventArgs e)
 		{
@@ -74,12 +86,14 @@ namespace ToDoBot
 			toDoList.Add(message);
 		}
 
+
 		private async Task takeFromList(CommandEventArgs e)
 		{
 			var message = ConstructMessage(e);
 			//await e.Channel.SendMessage(message + " is removed from the list");
 			toDoList.Remove(message);
 		}
+
 
 		private string ConstructMessage(CommandEventArgs e)
 		{
@@ -91,6 +105,7 @@ namespace ToDoBot
 			}
 			return message;
 		}
+
 
 		private async void PurgeChannel(CommandEventArgs e)
 		{
