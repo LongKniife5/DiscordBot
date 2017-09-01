@@ -123,7 +123,7 @@ namespace ToDoBot
 
 			await e.Channel.DeleteMessages(messagesToDelete);
 
-			await e.Channel.SendMessage("```Test:```");
+			await e.Channel.SendMessage("```List:```");
 			await e.Channel.SendMessage("```==========================```");
 		
 			foreach (string item in toDoList)
