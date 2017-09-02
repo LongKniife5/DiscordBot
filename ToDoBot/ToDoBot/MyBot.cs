@@ -109,8 +109,18 @@ namespace ToDoBot
 		private async Task takeFromList(CommandEventArgs e)
 		{
 			var message = ConstructMessage(e);
+
+			int n;
+			bool isNumeric = int.TryParse(message, out n);
+			if (isNumeric)
+			{
+				toDoList.Remove(toDoList[n-1]);
+			}
+			else
+			{
+				toDoList.Remove(message);
+			}
 			//await e.Channel.SendMessage(message + " is removed from the list");
-			toDoList.Remove(message);
 		}
 
 		//This turns what was said immediately after the 
