@@ -34,7 +34,7 @@ namespace ToDoBot
 			
 			//i'm not sure, but it is probably important
 			var commands = discord.GetService<CommandService>();
-
+			
 			#region ConversationCommands
 			commands.CreateCommand("hello")
 				.Do(async (e) => {
