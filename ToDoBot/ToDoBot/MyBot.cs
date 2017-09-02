@@ -55,7 +55,7 @@ namespace ToDoBot
 			#endregion
 
 			#region todoCommand
-			commands.CreateCommand("todo").Parameter("listVar", ParameterType.Required)
+			commands.CreateCommand("todo").Parameter("listVar", ParameterType.Multiple)
 				.Do(async (e) => {
 					await AddToList(e);
 					PurgeChannel(e);
@@ -65,22 +65,24 @@ namespace ToDoBot
 			#region testCommand
 			commands.CreateCommand("test").Parameter("testSTring", ParameterType.Multiple)
 				.Do(async (e) => {
+					string message = "";
 					for (int i = 0; i < e.Args.Length; i++)
 					{
-						await e.Channel.SendMessage(e.Args[i].ToString());
+						message += e.Args[i].ToString() + " ";
 					}
+					await e.Channel.SendTTSMessage(message);
 				});
 			#endregion
 
 			#region doneCommand
-			commands.CreateCommand("done").Parameter("toRemove", ParameterType.Required)
+			commands.CreateCommand("done").Parameter("toRemove", ParameterType.Multiple)
 				.Do(async (e) => {
 					await takeFromList(e);
 					PurgeChannel(e);
 				});
 			#endregion
 
-			#region IBeleiveThisLogsTheBotIn
+			#region ThisLogsTheBotIn
 			discord.ExecuteAndWait(async () =>
 			{
 				await discord.Connect("MzUzMTk2MzM1OTY2NDUzNzYw.DIsatw.eqGS8pnl-lEFQKPW7gxwB6ADmu8", TokenType.Bot);
@@ -121,7 +123,7 @@ namespace ToDoBot
 			//this will make sure that all words are read, instead of just the first.
 			for (int i = 0; i < e.Args.Length; i++)
 			{
-				message += e.Args[i].ToString();
+				message += e.Args[i].ToString() + " ";
 			}
 			return message;
 		}
@@ -139,13 +141,16 @@ namespace ToDoBot
 
 
 			//displays the list
-			await e.Channel.SendMessage("```Test:```");
-			await e.Channel.SendMessage("```==========================```");
-		
+			string message = "```Test: \n=========================== \n";
+			int i = 0;
 			foreach (string item in toDoList)
 			{
-				await e.Channel.SendMessage("```" + "- " + item + "```");
+				message += toDoList[i] + "\n";
+				i++;
 			}
+			message += "```";
+			await e.Channel.SendMessage(message);
 		}
+
 	}
 }
