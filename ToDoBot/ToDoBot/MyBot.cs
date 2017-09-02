@@ -141,10 +141,11 @@ namespace ToDoBot
 
 
 			//displays the list
-			string message = "```Test: \n=========================== \n";
+			string message = "```List: \n=========================== \n";
 			int i = 0;
 			foreach (string item in toDoList)
 			{
+                message += "- ";
 				message += toDoList[i] + "\n";
 				i++;
 			}
