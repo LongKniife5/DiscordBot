@@ -45,6 +45,11 @@ namespace ToDoBot
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Shut up and get back to work " + e.User.Name + "!");
 				});
+
+			commands.CreateCommand("Idea")
+				.Do(async (e) => {
+					await e.Channel.SendMessage(e.User.Name + " that is your job to find!");
+				});
 			#endregion
 
 			#region listCommand
