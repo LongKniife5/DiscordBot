@@ -38,24 +38,17 @@ namespace ToDoBot
 			#region ConversationCommands
 			commands.CreateCommand("hello")
 				.Do(async (e) => {
-					await e.Channel.SendMessage("Leave me alone " + e.User.Name + ", I know where you live!!");
+					await e.Channel.SendMessage("Leave me alone " + e.User.Name + " I know where you live!!");
 			});
 
 			commands.CreateCommand("How Ya Doin?")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Shut up and get back to work " + e.User.Name + "!");
 				});
+			#endregion
 
-            commands.CreateCommand("idea")
-                .Do(async (e) => {
-                    await e.Channel.SendMessage(e.User.Name + "That is your job to find!");
-                });
-
-
-            #endregion
-
-            #region listCommand
-            commands.CreateCommand("list")
+			#region listCommand
+			commands.CreateCommand("list")
 				.Do(async (e) => {
 					PurgeChannel(e);
 				});
