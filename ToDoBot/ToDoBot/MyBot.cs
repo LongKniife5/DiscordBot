@@ -2,6 +2,8 @@
 using Discord.Commands;
 
 using System;
+using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -87,6 +89,12 @@ namespace ToDoBot
 				});
 			#endregion
 
+			commands.CreateCommand("Save")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Saving...");
+					//Save();
+				});
+
 			#region ThisLogsTheBotIn
 			discord.ExecuteAndWait(async () =>
 			{
@@ -107,6 +115,12 @@ namespace ToDoBot
 		{
 			var message = ConstructMessage(e);
 			toDoList.Add(message);
+		}
+
+		private async Task Save()
+		{
+			string test = Directory.GetCurrentDirectory();
+			await e.Channel.SendMessage(test);
 		}
 
 		//When the command is used, this is called and this calls the constructmessage function
