@@ -91,22 +91,35 @@ namespace ToDoBot
 				});
 			#endregion
 
+			#region SaveCommand
 			commands.CreateCommand("Save")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Saving...");
 					Save(e);
 				});
+			#endregion
 
+			#region loadcommand
 			commands.CreateCommand("Load")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Loading...");
 					Load(e);
 				});
+			#endregion
 
-						commands.CreateCommand("Delete")
+			#region deletecommand
+			commands.CreateCommand("Delete")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Deleting...");
 					Delete(e);
+				});
+			#endregion
+
+			commands.CreateCommand("doneAll")
+				.Do(async (e) => {
+
+					toDoList.Clear();
+
 				});
 
 			#region ThisLogsTheBotIn
