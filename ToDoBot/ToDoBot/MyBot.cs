@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace ToDoBot
@@ -92,7 +94,19 @@ namespace ToDoBot
 			commands.CreateCommand("Save")
 				.Do(async (e) => {
 					await e.Channel.SendMessage("Saving...");
-					//Save();
+					Save(e);
+				});
+
+			commands.CreateCommand("Load")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Loading...");
+					Load(e);
+				});
+
+						commands.CreateCommand("Delete")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Deleting...");
+					Delete(e);
 				});
 
 			#region ThisLogsTheBotIn
@@ -117,10 +131,53 @@ namespace ToDoBot
 			toDoList.Add(message);
 		}
 
-		private async Task Save()
+		private async Task Save(CommandEventArgs e)
 		{
-			string test = Directory.GetCurrentDirectory();
-			await e.Channel.SendMessage(test);
+
+			string thisFile = Directory.GetCurrentDirectory();
+			string saveToPath = thisFile + "\\saveFile.txt";
+			//await e.Channel.SendMessage(saveToPath);
+
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Create(saveToPath);
+
+			UserData data = new UserData();
+			int i = 0;
+			foreach (string item in toDoList)
+			{
+				data.TODOLIST.Add(toDoList[i]);
+				i++;
+			}
+
+			bf.Serialize(file, data);
+			file.Close();
+		}
+
+		private async Task Load (CommandEventArgs e)
+		{
+			if(File.Exists(Directory.GetCurrentDirectory() + "\\saveFile.txt"))
+			{
+				BinaryFormatter bf = new BinaryFormatter();
+				FileStream file = File.Open(Directory.GetCurrentDirectory() + "\\saveFile.txt", FileMode.Open);
+
+				UserData data = (UserData)bf.Deserialize(file);
+				file.Close();
+
+				int i = 0;
+				foreach (string item in data.TODOLIST)
+				{
+					toDoList.Add(data.TODOLIST[i]);
+					i++;
+				}
+			}
+		}
+
+		private async Task Delete(CommandEventArgs e)
+		{
+			if (File.Exists(Directory.GetCurrentDirectory() + "\\saveFile.txt"))
+			{
+				File.Delete(Directory.GetCurrentDirectory() + "\\saveFile.txt");
+			}
 		}
 
 		//When the command is used, this is called and this calls the constructmessage function
@@ -183,4 +240,10 @@ namespace ToDoBot
 		}
 
 	}
+}
+
+[Serializable]
+class UserData
+{
+	public List<string> TODOLIST = new List<string>();
 }
