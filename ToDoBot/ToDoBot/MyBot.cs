@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 
 using System;
 using System.IO;
@@ -9,7 +10,6 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 
-
 namespace ToDoBot
 {
 	class MyBot
@@ -18,8 +18,12 @@ namespace ToDoBot
 
 		List<string> toDoList = new List<string>();
 
+		private DiscordSocketClient client;
+
 		public MyBot()
 		{
+			client = new DiscordSocketClient();
+
 			#region IHonestlyCouldn'tTellYouWhatThisDoes
 			discord = new DiscordClient(x =>
 			{
@@ -125,10 +129,11 @@ namespace ToDoBot
             #region ThisLogsTheBotIn
             discord.ExecuteAndWait(async () =>
             {
-                await discord.Connect("NDAyMTg0MDUyMTUwMzcwMzE1.DT1IVg.X_oXo6Z42LBP_S6OHFuO1rsRuzg", TokenType.Bot);
+				await client.LoginAsync(TokenType.Bot, token here);
             });
 			#endregion
 		}
+
         
 		//Tells the console the state of the bot, not seen in discord
 		private void Log(object sender, LogMessageEventArgs e)
