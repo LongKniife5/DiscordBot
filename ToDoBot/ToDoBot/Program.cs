@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ToDoBot
 {
-	class Program
+	public class Program
 	{
-		static void Main(string[] args)
+		public static async Task Main(string[] args)
 		{
 			MyBot bot = new MyBot();
+			await bot.Start();
+
+			await Task.Delay(-1);
 		}
 	}
 }
