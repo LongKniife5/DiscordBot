@@ -122,14 +122,14 @@ namespace ToDoBot
 
 				});
 
-			#region ThisLogsTheBotIn
-			discord.ExecuteAndWait(async () =>
-			{
-				await discord.Connect("MzUzMTk2MzM1OTY2NDUzNzYw.DIsatw.eqGS8pnl-lEFQKPW7gxwB6ADmu8", TokenType.Bot);
-			});
+            #region ThisLogsTheBotIn
+            discord.ExecuteAndWait(async () =>
+            {
+                await discord.Connect("NDAyMTg0MDUyMTUwMzcwMzE1.DT1IVg.X_oXo6Z42LBP_S6OHFuO1rsRuzg", TokenType.Bot);
+            });
 			#endregion
 		}
-
+        
 		//Tells the console the state of the bot, not seen in discord
 		private void Log(object sender, LogMessageEventArgs e)
 		{

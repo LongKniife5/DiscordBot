@@ -43,3 +43,20 @@ C:\Users\Justin-KEEP_OFF\Desktop\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToD
 C:\Users\Justin-KEEP_OFF\Desktop\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.csproj.CoreCompileInputs.cache
 C:\Users\Justin-KEEP_OFF\Desktop\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.exe
 C:\Users\Justin-KEEP_OFF\Desktop\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.pdb
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\ToDoBot.exe
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\ToDoBot.pdb
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Discord.Net.Commands.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Discord.Net.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.Concurrent.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.Enlightenment.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\RestSharp.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\UnityEngine.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\WebSocket4Net.dll
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.xml
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.Concurrent.xml
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\Nito.AsyncEx.Enlightenment.xml
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\bin\Debug\RestSharp.xml
+C:\Users\sanho191200\OneDrive – Troms VGS\GitHub\DiscordBot\ToDoBot\ToDoBot\obj\Debug\ToDoBot.csprojResolveAssemblyReference.cache
