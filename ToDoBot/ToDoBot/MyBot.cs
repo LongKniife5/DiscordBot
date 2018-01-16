@@ -5,132 +5,143 @@ using Discord.WebSocket;
 using System;
 using System.IO;
 using System.Text;
-using System.Linq;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using Newtonsoft.Json;
-
-using Microsoft.Extensions.DependencyInjection;
+using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ToDoBot
 {
-    public class MyBot
-    {
-        private DiscordSocketClient discord;
-        private CommandService commands;
-        private IServiceProvider services;
+	class MyBot
+	{
+		DiscordClient discord;
 
-        public static readonly string CommandPrefix = ".";
-        
-        public async Task Start ()
-        {
-            discord = new DiscordSocketClient ();
+		List<string> toDoList = new List<string>();
 
-            services = new ServiceCollection ()
-                .AddSingleton (commands)
-                .BuildServiceProvider ();
+		private DiscordSocketClient client;
 
-            await discord.LoginAsync (TokenType.Bot, token here);
-            await discord.StartAsync ();
+		public MyBot()
+		{
+			client = new DiscordSocketClient();
 
-            Console.WriteLine ("joined");
+			#region IHonestlyCouldn'tTellYouWhatThisDoes
+			discord = new DiscordClient(x =>
+			{
+				x.LogLevel = LogSeverity.Info;
+				x.LogHandler = Log;
+			});
+			#endregion
 
-            await Task.Delay (-1);
+			#region ThisSetsUpTheCommandPrefix
+			discord.UsingCommands(x =>
+			{
+				x.PrefixChar = '.';
+				x.AllowMentionPrefix = true;
+			});
+			#endregion
+			
+			//i'm not sure, but it is probably important
+			var commands = discord.GetService<CommandService>();
+			
+			#region ConversationCommands
+			commands.CreateCommand("hello")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Leave me alone " + e.User.Name + " I know where you live!!");
+			});
 
-			#region commands
-				#region ConversationCommands
-				commands.CreateCommand("hello")
-					.Do(async (e) => {
-						await e.Channel.SendMessage("Leave me alone " + e.User.Name + " I know where you live!!");
+			commands.CreateCommand("How Ya Doin?")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Shut up and get back to work " + e.User.Name + "!");
 				});
 
-				commands.CreateCommand("How Ya Doin?")
-					.Do(async (e) => {
-						await e.Channel.SendMessage("Shut up and get back to work " + e.User.Name + "!");
-					});
-
-				commands.CreateCommand("Idea")
-					.Do(async (e) => {
-						await e.Channel.SendMessage(e.User.Name + " that is your job to find!");
-					});
-				#endregion
-
-				#region listCommand
-				commands.CreateCommand("list")
-					.Do(async (e) => {
-						PurgeChannel(e);
-					});
-				#endregion
-
-				#region todoCommand
-				commands.CreateCommand("todo").Parameter("listVar", ParameterType.Multiple)
-					.Do(async (e) => {
-						await AddToList(e);
-						PurgeChannel(e);
-					});
-				#endregion
-
-				#region testCommand
-				commands.CreateCommand("test").Parameter("testSTring", ParameterType.Multiple)
-					.Do(async (e) => {
-						string message = "";
-						for (int i = 0; i < e.Args.Length; i++)
-						{
-							message += e.Args[i].ToString() + " ";
-						}
-						await e.Channel.SendTTSMessage(message);
-					});
-				#endregion
-
-				#region doneCommand
-				commands.CreateCommand("done").Parameter("toRemove", ParameterType.Multiple)
-					.Do(async (e) => {
-						await takeFromList(e);
-						PurgeChannel(e);
-					});
-				#endregion
-
-				#region SaveCommand
-				commands.CreateCommand("Save")
-					.Do(async (e) => {
-						await e.Channel.SendMessage("Saving...");
-						Save(e);
-					});
-				#endregion
-
-				#region loadcommand
-				commands.CreateCommand("Load")
-					.Do(async (e) => {
-						await e.Channel.SendMessage("Loading...");
-						Load(e);
-					});
-				#endregion
-
-				#region deletecommand
-				commands.CreateCommand("Delete")
-					.Do(async (e) => {
-						await e.Channel.SendMessage("Deleting...");
-						Delete(e);
-					});
-				#endregion
-
-				commands.CreateCommand("doneAll")
-					.Do(async (e) => {
-
-						toDoList.Clear();
-
-					});
-
-				#region ThisLogsTheBotIn
-				discord.ExecuteAndWait(async () =>
-				{
-					await client.LoginAsync(TokenType.Bot, token here);
+			commands.CreateCommand("Idea")
+				.Do(async (e) => {
+					await e.Channel.SendMessage(e.User.Name + " that is your job to find!");
 				});
-				#endregion
+			#endregion
+
+			#region listCommand
+			commands.CreateCommand("list")
+				.Do(async (e) => {
+					PurgeChannel(e);
+				});
+			#endregion
+
+			#region todoCommand
+			commands.CreateCommand("todo").Parameter("listVar", ParameterType.Multiple)
+				.Do(async (e) => {
+					await AddToList(e);
+					PurgeChannel(e);
+				});
+			#endregion
+
+			#region testCommand
+			commands.CreateCommand("test").Parameter("testSTring", ParameterType.Multiple)
+				.Do(async (e) => {
+					string message = "";
+					for (int i = 0; i < e.Args.Length; i++)
+					{
+						message += e.Args[i].ToString() + " ";
+					}
+					await e.Channel.SendTTSMessage(message);
+				});
+			#endregion
+
+			#region doneCommand
+			commands.CreateCommand("done").Parameter("toRemove", ParameterType.Multiple)
+				.Do(async (e) => {
+					await takeFromList(e);
+					PurgeChannel(e);
+				});
+			#endregion
+
+			#region SaveCommand
+			commands.CreateCommand("Save")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Saving...");
+					Save(e);
+				});
+			#endregion
+
+			#region loadcommand
+			commands.CreateCommand("Load")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Loading...");
+					Load(e);
+				});
+			#endregion
+
+			#region deletecommand
+			commands.CreateCommand("Delete")
+				.Do(async (e) => {
+					await e.Channel.SendMessage("Deleting...");
+					Delete(e);
+				});
+			#endregion
+
+			commands.CreateCommand("doneAll")
+				.Do(async (e) => {
+
+					toDoList.Clear();
+
+				});
+
+            #region ThisLogsTheBotIn
+            discord.ExecuteAndWait(async () =>
+            {
+				await client.LoginAsync(TokenType.Bot, token here);
+            });
 			#endregion
 		}
-        //When the todo command is used, this is called, and this calls the constructmessage function 
+
+        
+		//Tells the console the state of the bot, not seen in discord
+		private void Log(object sender, LogMessageEventArgs e)
+		{
+			Console.WriteLine(e.Message);
+		}
+
+		//When the todo command is used, this is called, and this calls the constructmessage function 
 		//and adds what is returned into the list of thingsToDo
 		private async Task AddToList(CommandEventArgs e)
 		{
@@ -248,6 +259,7 @@ namespace ToDoBot
 
 	}
 }
+
 [Serializable]
 class UserData
 {
