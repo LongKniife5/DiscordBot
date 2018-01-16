@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 
 using System;
 using System.IO;
@@ -14,7 +15,7 @@ namespace ToDoBot
 {
 	public class MyBot
 	{
-		private DiscordClient client;
+		private DiscordSocketClient client;
 		private CommandService commands;
 		private IServiceProvider services;
 
@@ -24,7 +25,7 @@ namespace ToDoBot
 
 		public async Task Start()
 		{
-			client = new DiscordClient();
+			client = new DiscordSocketClient();
 			commands = new CommandService();
 
 			services = new ServiceCollection()
