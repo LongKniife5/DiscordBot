@@ -34,7 +34,7 @@ namespace ToDoBot
 				x.PrefixChar = '.';
 				x.AllowMentionPrefix = true;
 			});
-			#endregion
+			#endregion 
 			
 			//i'm not sure, but it is probably important
 			var commands = discord.GetService<CommandService>();
