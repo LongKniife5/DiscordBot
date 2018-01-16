@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace ToDoBot
+namespace BotMyst
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			MyBot bot = new MyBot();
-		}
-	}
+    public class Program
+    {
+        public static async Task Main ()
+        {
+            BotMyst bot = new BotMyst ();
+            await bot.Start ();
+
+            await Task.Delay (-1);
+        } 
+    }
 }
