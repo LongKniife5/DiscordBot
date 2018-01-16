@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ToDoBot
 {
@@ -11,6 +7,9 @@ namespace ToDoBot
 		static void Main(string[] args)
 		{
 			MyBot bot = new MyBot();
+			await bot.Start();
+
+			await Task.Delay(-1);
 		}
 	}
 }
