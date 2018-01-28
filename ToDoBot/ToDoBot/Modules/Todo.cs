@@ -6,10 +6,9 @@ namespace ToDoBot
     public class Todo : ModuleBase<SocketCommandContext>
     {
         [Command("Todo")]
-        public async Task PingAsync(string toAdd)
+        public async Task addToList([Remainder]string toAdd)
         {
             Program.list.Add(toAdd);
-            await ReplyAsync(Program.list[0]);
         }
     }
 }
