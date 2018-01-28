@@ -1,4 +1,5 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,17 @@ namespace ToDoBot.Modules
         public async Task sayList()
         {
             string message = "";
+            EmbedBuilder builder = new EmbedBuilder();
             for(int i = 0; i < Program.list.Count; i++)
             {
                 message += Program.list[i];
                 message += "\n";
             }
-            message += "```";
-            await ReplyAsync(message);
+            builder.WithTitle("Ping!")
+                .WithDescription(message)
+                .WithColor(Color.Blue);
+
+            await ReplyAsync("",false, builder.Build());
         }
     }
 }
