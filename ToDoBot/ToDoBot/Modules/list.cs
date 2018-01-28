@@ -16,7 +16,9 @@ namespace ToDoBot.Modules
             for(int i = 0; i < Program.list.Count; i++)
             {
                 message += Program.list[i];
+                message += "\n";
             }
+            message += "```";
             await ReplyAsync(message);
         }
     }

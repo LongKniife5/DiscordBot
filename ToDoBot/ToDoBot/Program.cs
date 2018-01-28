@@ -19,7 +19,7 @@ namespace ToDoBot
         public async Task RunBotAsync()
         {
             list = new List<string>();
-            list.Add("List:\n===================\n");
+            list.Add("```List:\n===================\n");
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
