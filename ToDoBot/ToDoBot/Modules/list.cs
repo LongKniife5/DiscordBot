@@ -1,9 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ToDoBot.Modules
@@ -17,6 +13,7 @@ namespace ToDoBot.Modules
             EmbedBuilder builder = new EmbedBuilder();
             for(int i = 0; i < Program.list.Count; i++)
             {
+                message += "-";
                 message += Program.list[i];
                 message += "\n";
             }
