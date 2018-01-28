@@ -56,7 +56,7 @@ namespace ToDoBot
         {
             var message = arg as SocketUserMessage;
 
-            if (message.Author.IsBot)
+            if (message.Author.IsBot || message is null)
                 return;
 
             int argPos = 0;
