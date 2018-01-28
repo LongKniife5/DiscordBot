@@ -8,7 +8,7 @@ namespace ToDoBot
         [Command("Todo")]
         public async Task PingAsync()
         {
-            await ReplyAsync(Context.Message.ToString());
+            await ReplyAsync(Context.Message.Content);
         }
     }
 }
