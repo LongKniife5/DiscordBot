@@ -20,7 +20,7 @@ namespace ToDoBot.Modules
                 message += Program.list[i];
                 message += "\n";
             }
-            builder.WithTitle("Ping!")
+            builder.WithTitle("List: ")
                 .WithDescription(message)
                 .WithColor(Color.Blue);
 
