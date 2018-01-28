@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 namespace ToDoBot
@@ -14,9 +15,10 @@ namespace ToDoBot
         private DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
-
+        public static List<string> list;
         public async Task RunBotAsync()
         {
+            list = new List<string>();
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
