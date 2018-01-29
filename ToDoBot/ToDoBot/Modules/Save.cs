@@ -23,10 +23,6 @@ namespace ToDoBot.Modules
             {
                 data.TODOLIST.Add(item);
             }
-            foreach(string item in Program.list2)
-            {
-                data.List2.Add(item);
-            }
 
             // writes the object to the file and closes it
             bf.Serialize(file, data);

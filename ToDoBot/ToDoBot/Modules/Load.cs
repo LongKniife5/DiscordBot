@@ -26,10 +26,6 @@ namespace ToDoBot.Modules
                 {
                     Program.list.Add(item);
                 }
-                foreach(string item in data.List2)
-                {
-                    Program.list2.Add(item);
-                }
             }
         }
     }
