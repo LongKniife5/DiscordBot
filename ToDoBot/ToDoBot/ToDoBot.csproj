@@ -164,8 +164,10 @@
   <ItemGroup>
     <Compile Include="Modules\done.cs" />
     <Compile Include="Modules\list.cs" />
+    <Compile Include="Modules\Load.cs" />
     <Compile Include="Modules\Ping.cs" />
     <Compile Include="Modules\Purge.cs" />
+    <Compile Include="Modules\Save.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\Todo.cs" />

@@ -6,7 +6,7 @@ namespace ToDoBot.Modules
     public class done : ModuleBase<SocketCommandContext>
     {
         [Command("done")]
-        public async Task removeItem(string toRemove)
+        public async Task removeItem([Remainder] string toRemove)
         {
             int n;
             bool isNumeric = int.TryParse(toRemove, out n);

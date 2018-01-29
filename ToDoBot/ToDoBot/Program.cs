@@ -76,3 +76,8 @@ namespace ToDoBot
         }
     }
 }
+[Serializable]
+public class UserData
+{
+    public List<String> TODOLIST = new List<String>();
+}
