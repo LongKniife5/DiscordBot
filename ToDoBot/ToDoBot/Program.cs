@@ -16,9 +16,11 @@ namespace ToDoBot
         private CommandService _commands;
         private IServiceProvider _services;
         public static List<string> list;
+        public static List<string> list2;
         public async Task RunBotAsync()
         {
             list = new List<string>();
+            list2 = new List<string>;
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
@@ -80,4 +82,5 @@ namespace ToDoBot
 public class UserData
 {
     public List<String> TODOLIST = new List<String>();
+    public List<string> List2 = new List<String>();
 }
